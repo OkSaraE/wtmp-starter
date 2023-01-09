@@ -1,6 +1,6 @@
 {
   "name": "wtmp-starter",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "description": "Simple boilerplate for webpack powered projects",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "webpack --config webpack.prod.js"
   },
   "keywords": [],
-  "author": "mattpe",
+  "author": "saraok",
   "license": "ISC",
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
