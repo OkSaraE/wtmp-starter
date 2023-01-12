@@ -1,3 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+/* font-family: 'Zen Dots', cursive; */
+
 body {
-  margin: 10%;
+  padding: 10%;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #3D405B;
+  color: #FAF9F0;
+}
+
+h1{
+  font-size: 2em;
+}
+
+p{
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+.guessField{
+  border:none;
+  padding: 5px;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #FAF9F0;
+
+  text-align: center;
+}
+
+.guessSubmit{
+  border:none;
+  padding: 5px;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #FAF9F0;
+  color: black;
+}
+
+.guessSubmit:hover{
+  background-color: #B3B5CC;
+}
+
+.lastResult{
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+}
+
+button{
+  border: none;
+  padding: 5px;
+  font-family: 'Roboto Mono', monospace;
+  background-color: #FAF9F0;
+  color: black;
+}
+
+button:hover{
+  background-color: #B3B5CC;
 }

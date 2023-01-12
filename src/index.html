@@ -4,12 +4,19 @@
     <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="assets/styles.css" />
+
   </head>
 
   <body>
-    <label for="guessField">Enter a guess: </label>
-    <input type="number" id="guessField" class="guessField" />
-    <input type="submit" value="Submit guess" class="guessSubmit" />
+        <h1>Number guessing game</h1>
+
+    <p class="textBody"></p>
+
+    <div class="form">
+      <label for="guessField">Enter a guess: </label>
+      <input type="number" min="1" max="100" required id="guessField" class="guessField">
+      <input type="submit" value="Submit guess" class="guessSubmit">
+    </div>
 
     <div class="resultParas">
       <p class="guesses"></p>
