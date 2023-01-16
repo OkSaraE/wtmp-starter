@@ -1,57 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-/* font-family: 'Zen Dots', cursive; */
+@import url("https://fonts.googleapis.com/css2?family=Alef&display=swap");
+
+p {
+  font-family: "Alef", sans-serif;
+}
 
 body {
-  padding: 10%;
-  font-family: 'Roboto Mono', monospace;
-  background-color: #3D405B;
-  color: #FAF9F0;
+  background-color: white;
 }
 
-h1{
-  font-size: 2em;
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
 }
 
-p{
-  font-size: 1em;
-  line-height: 1.5;
+ul#navli {
+  list-style-type: none;
+  margin: 10px;
+  padding: 0;
 }
 
-.guessField{
-  border:none;
+ul#navli>li {
+  display: inline;
+  margin: 10px;
+}
+
+li a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: "Alef", sans-serif;
+  color: #4a3228;
+  font-weight: bold;
+}
+
+li a:hover {
+  color: #bb6e25;
+}
+
+input {
+  text-align: center;
+  margin: 10px;
   padding: 5px;
-  font-family: 'Roboto Mono', monospace;
-  background-color: #FAF9F0;
+  border: solid 2px #4a3228;
+  border-radius: 5px;
+}
 
+/* Header */
+.headerBox {
+  display: flex;
+  margin: 10px;
+  height: 250px;
+  margin: 0;
+  width: 100%;
+}
+
+#headerText {
+  background-color: #9b3a31;
+  color: #f8eadd;
+  font-size: 1.5rem;
+  width: 50vw;
   text-align: center;
 }
 
-.guessSubmit{
-  border:none;
-  padding: 5px;
-  font-family: 'Roboto Mono', monospace;
-  background-color: #FAF9F0;
-  color: black;
+#headerPic {
+  background-image: url("food.png");
+  width: 50vw;
+  background-size: cover;
 }
 
-.guessSubmit:hover{
-  background-color: #B3B5CC;
-}
-
-.lastResult{
+/* Main */
+main {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-auto-rows: 100px;
+  grid-template-areas:
+    "maintext maintext"
+    "left right";
+  margin: 10px;
   padding: 10px;
-  border-radius: 10px;
-  color: black;
+  justify-items: center ;
 }
 
-button{
-  border: none;
-  padding: 5px;
-  font-family: 'Roboto Mono', monospace;
-  background-color: #FAF9F0;
-  color: black;
+#bodyText {
+  grid-area: maintext;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-button:hover{
-  background-color: #B3B5CC;
+.menu {
+  width: 250px;
+  border: 2px #4a3228;
+  border-style: dashed;
+  border-radius: 5px;
+  background-color: #dac8be;
+  margin: 10px;
+  padding: 10px;
+}
+
+#ravintola1 {
+  grid-area: left;
+}
+
+#ravintola2 {
+  grid-area: right;
 }

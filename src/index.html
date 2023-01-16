@@ -4,24 +4,48 @@
     <meta charset="utf-8" />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="stylesheet" href="assets/styles.css" />
-
   </head>
 
   <body>
-        <h1>Number guessing game</h1>
+    <nav class="navbar">
+      <ul id="navli">
+        <li><a href="">Etusivu</a></li>
+        <li><a href="">Ruokalista</a></li>
+        <li><a href="">Ravintolat</a></li>
+        <li><a href="">Yhteystiedot</a></li>
+      </ul>
 
-    <p class="textBody"></p>
+      <input type="text" placeholder="Hae ravintola nimellä..." />
+    </nav>
 
-    <div class="form">
-      <label for="guessField">Enter a guess: </label>
-      <input type="number" min="1" max="100" required id="guessField" class="guessField">
-      <input type="submit" value="Submit guess" class="guessSubmit">
-    </div>
+    <header class="headerBox">
+      <div id="headerText">
+        <p class="ht">Lounari.<br />Missä tänään syötäisiin.</p>
+      </div>
+      <div id="headerPic"></div>
+    </header>
 
-    <div class="resultParas">
-      <p class="guesses"></p>
-      <p class="lastResult"></p>
-      <p class="lowOrHi"></p>
-    </div>
+    <main>
+      <section id="bodyText">
+        <p>
+          Missä tänään syötäisiin. Tuttu tarina ennen lounashetkeä. <br />
+          Palvelu etsii lähelläsi olevat lounaspaikat, seka näyttää niiden
+          päivittäisen lounaslistan. <br />
+          Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin
+          klikkaamalla ravintolan logoa.
+        </p>
+      </section>
+
+      <section class="menu menuBox" id="Ravintola1">
+        <div class="menuText"></div>
+      </section>
+
+      <section class="menu" id="Ravintola2">
+        <div class="menuText2"></div>
+      </section>
+    </main>
+    <button id="language">Language</button>
+    <button id="sort">Sort</button>
+    <button id="random">Random</button>
   </body>
 </html>

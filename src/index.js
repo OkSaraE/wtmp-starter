@@ -1,95 +1,90 @@
-//3
-const highNumber = 1;
-const lowNumber = 100;
+const coursesEn = [
+  "Hamburger, cream sauce and poiled potates",
+  "Goan style fish curry and whole grain rice",
+  "Vegan Chili sin carne and whole grain rice",
+  "Broccoli puree soup, side salad with two napas",
+  "Lunch baguette with BBQ-turkey filling",
+  "Cheese / Chicken / Vege / Halloum burger and french fries",
+];
+const coursesFi = [
+  "Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
+  "Goalaista kalacurrya ja täysjyväriisiä",
+  "vegaani Chili sin carne ja täysjyväriisi",
+  "Parsakeittoa,lisäkesalaatti kahdella napaksella",
+  "Lunch baguette with BBQ-turkey filling",
+  "Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset",
+];
 
-const randomNumber =
-  Math.floor(Math.random() * (highNumber - lowNumber + 1)) + lowNumber;
-console.log(randomNumber);
+let lang = "fi";
+let activeMenu = coursesFi;
 
-const body = document.querySelector(".textBody");
-body.textContent =
-  "We have selected a random number between " +
-  lowNumber +
-  " and " +
-  highNumber +
-  ". See if you can guess it in 10 turns or fewer. We'll tell you if your guess was too high or too low.";
+/**
+ * renders menu content to html page
+ * @param {*} menu - array of courses
+ */
+// Menu renderin, 3
+const renderMenu = (menu) => {
+  const menuText = document.querySelector(".menuText");
+  menuText.innerHTML = "";
+  const list = document.createElement("ul");
+  for (const dish of menu) {
+    const li = document.createElement("li");
+    li.textContent = dish;
 
-const guesses = document.querySelector(".guesses");
-const lastResult = document.querySelector(".lastResult");
-const lowOrHi = document.querySelector(".lowOrHi");
-
-const guessSubmit = document.querySelector(".guessSubmit");
-const guessField = document.querySelector(".guessField");
-
-let guessCount = 1;
-let resetButton;
-
-const startTime = Date.now();
-
-const checkGuess = () => {
-  const userGuess = Number(guessField.value);
-  if (guessCount === 1) {
-    guesses.textContent = "Previous guesses: ";
+    list.appendChild(li);
   }
-  guesses.textContent += `${userGuess} ` + ", ";
-
-  if (userGuess === randomNumber) {
-    const endTime = Date.now();
-    const time = (endTime - startTime) / 1000;
-
-    lastResult.textContent =
-      "Congratulations! You got it right! Your time was " +
-      time +
-      " seconds. You guessed " +
-      guessCount +
-      " times.";
-
-    lastResult.style.backgroundColor = "#81B29A";
-    lowOrHi.textContent = "";
-    setGameOver();
-  } else if (guessCount === 10) {
-    lastResult.textContent = "!!!GAME OVER!!!";
-    lowOrHi.textContent = "";
-    setGameOver();
-  } else {
-    lastResult.textContent = "Wrong!";
-    lastResult.style.backgroundColor = "#E07A5F";
-    if (userGuess < randomNumber) {
-      lowOrHi.textContent = "Last guess was too low!";
-    } else if (userGuess > randomNumber) {
-      lowOrHi.textContent = "Last guess was too high!";
-    }
-  }
-
-  guessCount++;
-  guessField.value = "";
-  guessField.focus();
+  menuText.append(list);
 };
 
-guessSubmit.addEventListener("click", checkGuess);
-const setGameOver = () => {
-  guessField.disabled = true;
-  guessSubmit.disabled = true;
-  resetButton = document.createElement("button");
-  resetButton.textContent = "Start new game";
-  document.body.append(resetButton);
-  resetButton.addEventListener("click", resetGame);
-};
+renderMenu(activeMenu);
 
-const resetGame = () => {
-  guessCount = 1;
-
-  const resetParas = document.querySelectorAll(".resultParas p");
-  for (const resetPara of resetParas) {
-    resetPara.textContent = "";
+//Language change, 4
+const changeLan = (language) => {
+  if (language === "fi") {
+    lang = "fi";
+    activeMenu = coursesFi;
+  } else if (language === "en") {
+    activeMenu = coursesEn;
   }
-
-  resetButton.parentNode.removeChild(resetButton);
-
-  guessField.disabled = false;
-  guessSubmit.disabled = false;
-  guessField.value = "";
-  guessField.focus();
-
-  randomNumber = Math.floor(Math.random() * 100) + 1;
+  lang = language;
+  renderMenu(activeMenu);
 };
+
+const lanButton = document.querySelector("#language");
+
+lanButton.addEventListener("click", () => {
+  if (lang === "fi") {
+    changeLan("en");
+  } else if (lang === "en") {
+    changeLan("fi");
+  }
+});
+
+// Menu sortin, 5
+const sortMenu = (menu, order = "asc") => {
+  menu.sort();
+  if (order === "desc") {
+    menu.reverse();
+  }
+  return menu;
+};
+const sortButton = document.querySelector("#sort");
+
+sortButton.addEventListener("click", () => {
+  renderMenu(sortMenu(activeMenu));
+});
+
+//random dish, 6
+const getRandomDish = (menu) => {
+  const randomIndex = Math.floor(Math.random() * menu.length);
+  return menu[randomIndex];
+};
+
+const randomButton = document.querySelector("#random");
+
+randomButton.addEventListener("click", () => {
+  const dish = getRandomDish(activeMenu);
+  const menuText2 = document.querySelector(".menuText2");
+  menuText2.innerHTML = "";
+  menuText2.append(dish);
+});
