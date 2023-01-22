@@ -1,23 +1,11 @@
-const coursesEn = [
-  "Hamburger, cream sauce and poiled potates",
-  "Goan style fish curry and whole grain rice",
-  "Vegan Chili sin carne and whole grain rice",
-  "Broccoli puree soup, side salad with two napas",
-  "Lunch baguette with BBQ-turkey filling",
-  "Cheese / Chicken / Vege / Halloum burger and french fries",
-];
-const coursesFi = [
-  "Jauhelihapihvi, ruskeaa kermakastiketta ja keitettyä perunaa",
-  "Goalaista kalacurrya ja täysjyväriisiä",
-  "vegaani Chili sin carne ja täysjyväriisi",
-  "Parsakeittoa,lisäkesalaatti kahdella napaksella",
-  "Lunch baguette with BBQ-turkey filling",
-  "Juusto / Kana / Kasvis / Halloumi burgeri ja ranskalaiset",
-];
+import Menu from './menu.json';
+// console.log('menu from json', Menu);
+
+const coursesEn = Object.values(Menu.courses).map((course) => course.title_en);
+const coursesFi = Object.values(Menu.courses).map((course) => course.title_fi);
 
 let lang = "fi";
 let activeMenu = coursesFi;
-
 /**
  * renders menu content to html page
  * @param {*} menu - array of courses
