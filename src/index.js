@@ -1,6 +1,6 @@
 //3
-const highNumber = 1;
-const lowNumber = 100;
+const highNumber = 100;
+const lowNumber = 1;
 
 const randomNumber =
   Math.floor(Math.random() * (highNumber - lowNumber + 1)) + lowNumber;
