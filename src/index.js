@@ -1,18 +1,15 @@
-import Menu from './menu.json';
-// console.log('menu from json', Menu);
-
-const coursesEn = Object.values(Menu.courses).map((course) => course.title_en);
-const coursesFi = Object.values(Menu.courses).map((course) => course.title_fi);
+import sodexo from './modules/sodexo-data';
+import fazer from './modules/fazer-data';
 
 let lang = "fi";
-let activeMenu = coursesFi;
+let activeMenus = [sodexo.coursesFi, fazer.coursesFi];
 /**
  * renders menu content to html page
  * @param {*} menu - array of courses
  */
 // Menu renderin, 3
-const renderMenu = (menu) => {
-  const menuText = document.querySelector(".menuText");
+const renderMenu = (menu, targetElement) => {
+  const menuText = targetElement;
   menuText.innerHTML = "";
   const list = document.createElement("ul");
   for (const dish of menu) {
@@ -24,18 +21,21 @@ const renderMenu = (menu) => {
   menuText.append(list);
 };
 
-renderMenu(activeMenu);
+renderMenu(activeMenus[0], document.querySelector(".menuText"));
+renderMenu(activeMenus[1], document.querySelector(".menuText3"));
 
 //Language change, 4
 const changeLan = (language) => {
   if (language === "fi") {
     lang = "fi";
-    activeMenu = coursesFi;
+    activeMenu[0] = sodexo.coursesFi;
+    activeMenu[1] = fazer.coursesFi;
   } else if (language === "en") {
-    activeMenu = coursesEn;
+    activeMenu[0] = sodexo.coursesEn;
+    activeMenu[1] = fazer.coursesFi;
   }
   lang = language;
-  renderMenu(activeMenu);
+  renderMenu(activeMenu[0]);
 };
 
 const lanButton = document.querySelector("#language");
@@ -59,7 +59,7 @@ const sortMenu = (menu, order = "asc") => {
 const sortButton = document.querySelector("#sort");
 
 sortButton.addEventListener("click", () => {
-  renderMenu(sortMenu(activeMenu));
+  renderMenu(sortMenu(activeMenu[0]));
 });
 
 //random dish, 6
@@ -71,8 +71,14 @@ const getRandomDish = (menu) => {
 const randomButton = document.querySelector("#random");
 
 randomButton.addEventListener("click", () => {
-  const dish = getRandomDish(activeMenu);
+  const dish = getRandomDish(activeMenu[0]);
   const menuText2 = document.querySelector(".menuText2");
   menuText2.innerHTML = "";
   menuText2.append(dish);
 });
+
+const init = () => {
+
+};
+
+init();
