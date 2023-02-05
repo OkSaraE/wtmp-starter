@@ -2,7 +2,7 @@
 const highNumber = 100;
 const lowNumber = 1;
 
-const randomNumber =
+let randomNumber =
   Math.floor(Math.random() * (highNumber - lowNumber + 1)) + lowNumber;
 console.log(randomNumber);
 
@@ -21,6 +21,7 @@ const lowOrHi = document.querySelector(".lowOrHi");
 
 const guessSubmit = document.querySelector(".guessSubmit");
 const guessField = document.querySelector(".guessField");
+const avarage = document.querySelector(".avarage");
 
 let guessCount = 1;
 let resetButton;
@@ -106,10 +107,9 @@ const algGuess = (highNumber, lowNumber) => {
   let numbersGuessed = [];
   //for alg loop
   let runAlgTime = 10;
-  let avrGuessCount = [];
+  let guessCount = [];
 
   let guess = parseInt(Math.floor((lowPos + highPos) / 2));
-  console.log(guess + " Ehdotus");
 
   //loop for how many time to run
   for (let i = 0; i < runAlgTime; i++) {
@@ -118,40 +118,56 @@ const algGuess = (highNumber, lowNumber) => {
       if (guess === randomNumber) {
         numbersGuessed.push(guess);
         timesGuessed++;
-        avrGuessCount.push(timesGuessed);
-        // lastResult.textContent = "Congratulations! The code works!";
-        // lastResult.style.backgroundColor = "#81B29A";
-        // times.textContent = "Total time guessed: " + `${timesGuessed} `;
-        // numbers.textContent += numbersGuessed;
-        console.log("läpi");
+        guessCount.push(timesGuessed);
+        if (runAlgTime === 1) {
+          lastResult.textContent = "Congratulations! The code works!";
+          lastResult.style.backgroundColor = "#81B29A";
+          times.textContent = "Total time guessed: " + `${timesGuessed} `;
+          numbers.textContent += numbersGuessed;
+        }
         break;
       } else {
-        lastResult.textContent = "Wrong";
+        //add new high / low numbers
         timesGuessed++;
-
         if (guess < randomNumber) {
           lowPos = guess;
         } else if (guess > randomNumber) {
           highPos = guess;
         }
       }
+      //save number, new guess
       numbersGuessed.push(guess);
       guess = parseInt(Math.floor((lowPos + highPos) / 2));
-      console.log(guess + " rere");
     }
-
-    //reset numbers
+    //reset numbers for new round
     highPos = highNumber;
     lowPos = lowNumber;
     timesGuessed = 0;
     numbersGuessed = [];
-    randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+    randomNumber =
+      Math.floor(Math.random() * (highNumber - lowNumber + 1)) + lowNumber;
   }
 
-  lastResult.textContent = "Congratulations! The code works!";
-  lastResult.style.backgroundColor = "#81B29A";
-  times.textContent = "Total time guessed: " + `${timesGuessed} `;
-  numbers.textContent += numbersGuessed;
+  if (runAlgTime > 1) {
+    console.log(guessCount);
+    let max = Math.max(...guessCount);
+    console.log(max);
+    let min = Math.min(...guessCount);
+    console.log(min);
+
+    let average = parseInt(guessCount.reduce((a, b) => a + b) / guessCount.length);
+
+    avarage.textContent =
+      "Avarage it took " + average
+      +" tries. Most it took " +
+      max +
+      " tries. At least it took " +
+      min +
+      " tries.";
+      avarage.style.backgroundColor = "#81B29A";
+  }
 };
 
 console.log(algGuess(highNumber, lowNumber));
+
+//noup
