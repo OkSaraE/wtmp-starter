@@ -5,6 +5,7 @@ let lang = "fi";
 let menuContainers = [];
 let activeMenus = [];
 
+//menu rendering to page
 const renderMenu = (menu, targetElem) => {
   const menuContainer = targetElem;
   menuContainer.innerHTML = "";
@@ -17,18 +18,17 @@ const renderMenu = (menu, targetElem) => {
   menuContainer.append(list);
 };
 
-// TODO: fix for multiple menus
-const sortMenu = (menu, order = "asc") => {
-  // create a copy of the menu for sorting
-  // don't change the original arrays's order
-  menu = [...menu];
-  menu.sort();
-  if (order === "desc") {
-    menu.reverse();
-  }
-  return menu;
-};
+//menu sorting
+//not working with multiple menus
+// const sortMenu = (menu, order = "asc") => {
+//   menu.sort();
+//   if (order === "desc") {
+//     menu.reverse();
+//   }
+//   return menu;
+// };
 
+//language change
 const changeLanguage = (language) => {
   if (language === "fi") {
     activeMenus[0] = Sodexo.coursesFi;
@@ -38,11 +38,20 @@ const changeLanguage = (language) => {
     activeMenus[1] = Fazer.coursesEn;
   }
   lang = language;
-  // TODO: implement & use generic renderAll() function??
   for (const [index, menu] of activeMenus.entries()) {
     renderMenu(menu, menuContainers[index]);
   }
 };
+
+//picking random menu
+const randButton = document.querySelector("#rand-button");
+randButton.addEventListener("click", () => {
+  const dish = getRandomDish(activeMenus[0]);
+  const menuText2 = document.querySelector("#menuRandom");
+  menuText2.innerHTML = "";
+  menuText2.append(dish);
+  menuText2.style.visibility = "visible";
+});
 
 const getRandomDish = (menu) => {
   const randomIndex = Math.floor(Math.random() * menu.length);
@@ -53,6 +62,7 @@ const sortButton = document.querySelector("#sort-button");
 sortButton.addEventListener("click", () => {
   renderMenu(sortMenu(activeMenus[0]));
 });
+
 const langButton = document.querySelector("#lang-button");
 langButton.addEventListener("click", () => {
   if (lang === "fi") {
@@ -62,17 +72,7 @@ langButton.addEventListener("click", () => {
   }
 });
 
-
-const randButton = document.querySelector("#rand-button");
-randButton.addEventListener("click", () => {
-  // alert(getRandomDish(activeMenus[0]));
-  const dish = getRandomDish(activeMenus[0]);
-  const menuText2 = document.querySelector("#menuRandom");
-  menuText2.innerHTML = "";
-  menuText2.append(dish);
-  menuText2.style.visibility = "visible";
-});
-
+//init
 const init = () => {
   activeMenus = [Sodexo.coursesFi, Fazer.coursesFi];
   menuContainers = document.querySelectorAll(".menu-container");
@@ -80,4 +80,6 @@ const init = () => {
     renderMenu(menu, menuContainers[index]);
   }
 };
+
+
 init();
