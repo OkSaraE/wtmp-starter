@@ -1,107 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Alef&display=swap");
-
-p {
-  font-family: "Alef", sans-serif;
+body{
+  width: 60%;
+  margin:auto;
 }
 
-body {
-  background-color: white;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
-
-ul#navli {
-  list-style-type: none;
-  margin: 10px;
-  padding: 0;
-}
-
-ul#navli>li {
-  display: inline;
-  margin: 10px;
-}
-
-li a {
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-family: "Alef", sans-serif;
-  color: #4a3228;
-  font-weight: bold;
-}
-
-li a:hover {
-  color: #bb6e25;
-}
-
-input {
-  text-align: center;
-  margin: 10px;
-  padding: 5px;
-  border: solid 2px #4a3228;
+.menu-container{
+  border: 2px solid black;
+  margin: 10px 0 10px 0;
   border-radius: 5px;
 }
 
-/* Header */
-.headerBox {
-  display: flex;
-  margin: 10px;
-  height: 250px;
-  margin: 0;
-  width: 100%;
+button{
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin-left: 10px;
+  background-color: #bbd0ff;
 }
 
-#headerText {
-  background-color: #9b3a31;
-  color: #f8eadd;
-  font-size: 1.5rem;
-  width: 50vw;
-  text-align: center;
+button:hover{
+  background-color: #5d91ff;
+  cursor: pointer;
+  color:white;
 }
 
-#headerPic {
-  background-image: url("food.png");
-  width: 50vw;
-  background-size: cover;
-}
-
-/* Main */
-main {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  grid-auto-rows: 100px;
-  grid-template-areas:
-    "maintext maintext"
-    "left right";
-  margin: 10px;
+#menuRandom{
+  visibility: hidden;
   padding: 10px;
-  justify-items: center ;
-}
-
-#bodyText {
-  grid-area: maintext;
-  text-align: center;
-  font-size: 1.2rem;
-}
-
-.menu {
-  width: 250px;
-  border: 2px #4a3228;
-  border-style: dashed;
-  border-radius: 5px;
-  background-color: #dac8be;
-  margin: 10px;
-  padding: 10px;
-}
-
-#ravintola1 {
-  grid-area: left;
-}
-
-#ravintola2 {
-  grid-area: right;
+  background-color: #bbd0ff;
 }

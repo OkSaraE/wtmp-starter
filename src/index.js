@@ -1,84 +1,83 @@
-import sodexo from './modules/sodexo-data';
-import fazer from './modules/fazer-data';
+import Sodexo from "./modules/sodexo-data";
+import Fazer from "./modules/fazer-data";
 
 let lang = "fi";
-let activeMenus = [sodexo.coursesFi, fazer.coursesFi];
-/**
- * renders menu content to html page
- * @param {*} menu - array of courses
- */
-// Menu renderin, 3
-const renderMenu = (menu, targetElement) => {
-  const menuText = targetElement;
-  menuText.innerHTML = "";
+let menuContainers = [];
+let activeMenus = [];
+
+const renderMenu = (menu, targetElem) => {
+  const menuContainer = targetElem;
+  menuContainer.innerHTML = "";
   const list = document.createElement("ul");
   for (const dish of menu) {
     const li = document.createElement("li");
     li.textContent = dish;
-
-    list.appendChild(li);
+    list.append(li);
   }
-  menuText.append(list);
+  menuContainer.append(list);
 };
 
-renderMenu(activeMenus[0], document.querySelector(".menuText"));
-renderMenu(activeMenus[1], document.querySelector(".menuText3"));
-
-//Language change, 4
-const changeLan = (language) => {
-  if (language === "fi") {
-    lang = "fi";
-    activeMenu[0] = sodexo.coursesFi;
-    activeMenu[1] = fazer.coursesFi;
-  } else if (language === "en") {
-    activeMenu[0] = sodexo.coursesEn;
-    activeMenu[1] = fazer.coursesFi;
-  }
-  lang = language;
-  renderMenu(activeMenu[0]);
-};
-
-const lanButton = document.querySelector("#language");
-
-lanButton.addEventListener("click", () => {
-  if (lang === "fi") {
-    changeLan("en");
-  } else if (lang === "en") {
-    changeLan("fi");
-  }
-});
-
-// Menu sortin, 5
+// TODO: fix for multiple menus
 const sortMenu = (menu, order = "asc") => {
+  // create a copy of the menu for sorting
+  // don't change the original arrays's order
+  menu = [...menu];
   menu.sort();
   if (order === "desc") {
     menu.reverse();
   }
   return menu;
 };
-const sortButton = document.querySelector("#sort");
 
-sortButton.addEventListener("click", () => {
-  renderMenu(sortMenu(activeMenu[0]));
-});
+const changeLanguage = (language) => {
+  if (language === "fi") {
+    activeMenus[0] = Sodexo.coursesFi;
+    activeMenus[1] = Fazer.coursesFi;
+  } else if (language === "en") {
+    activeMenus[0] = Sodexo.coursesEn;
+    activeMenus[1] = Fazer.coursesEn;
+  }
+  lang = language;
+  // TODO: implement & use generic renderAll() function??
+  for (const [index, menu] of activeMenus.entries()) {
+    renderMenu(menu, menuContainers[index]);
+  }
+};
 
-//random dish, 6
 const getRandomDish = (menu) => {
   const randomIndex = Math.floor(Math.random() * menu.length);
   return menu[randomIndex];
 };
 
-const randomButton = document.querySelector("#random");
+const sortButton = document.querySelector("#sort-button");
+sortButton.addEventListener("click", () => {
+  renderMenu(sortMenu(activeMenus[0]));
+});
+const langButton = document.querySelector("#lang-button");
+langButton.addEventListener("click", () => {
+  if (lang === "fi") {
+    changeLanguage("en");
+  } else {
+    changeLanguage("fi");
+  }
+});
 
-randomButton.addEventListener("click", () => {
-  const dish = getRandomDish(activeMenu[0]);
-  const menuText2 = document.querySelector(".menuText2");
+
+const randButton = document.querySelector("#rand-button");
+randButton.addEventListener("click", () => {
+  // alert(getRandomDish(activeMenus[0]));
+  const dish = getRandomDish(activeMenus[0]);
+  const menuText2 = document.querySelector("#menuRandom");
   menuText2.innerHTML = "";
   menuText2.append(dish);
+  menuText2.style.visibility = "visible";
 });
 
 const init = () => {
-
+  activeMenus = [Sodexo.coursesFi, Fazer.coursesFi];
+  menuContainers = document.querySelectorAll(".menu-container");
+  for (const [index, menu] of activeMenus.entries()) {
+    renderMenu(menu, menuContainers[index]);
+  }
 };
-
 init();

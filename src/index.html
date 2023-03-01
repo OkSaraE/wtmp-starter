@@ -7,49 +7,14 @@
   </head>
 
   <body>
-    <nav class="navbar">
-      <ul id="navli">
-        <li><a href="">Etusivu</a></li>
-        <li><a href="">Ruokalista</a></li>
-        <li><a href="">Ravintolat</a></li>
-        <li><a href="">Yhteystiedot</a></li>
-      </ul>
-
-      <input type="text" placeholder="Hae ravintola nimellä..." />
-    </nav>
-
-    <header class="headerBox">
-      <div id="headerText">
-        <p class="ht">Lounari.<br />Missä tänään syötäisiin.</p>
-      </div>
-      <div id="headerPic"></div>
-    </header>
-
     <main>
-      <section id="bodyText">
-        <p>
-          Missä tänään syötäisiin. Tuttu tarina ennen lounashetkeä. <br />
-          Palvelu etsii lähelläsi olevat lounaspaikat, seka näyttää niiden
-          päivittäisen lounaslistan. <br />
-          Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin
-          klikkaamalla ravintolan logoa.
-        </p>
-      </section>
-
-      <section class="menu menuBox" id="Ravintola1">
-        <div class="menuText"></div>
-      </section>
-
-      <section class="menu menuBox" id="Ravintola3">
-        <div class="menuText3"></div>
-      </section>
-
-      <section class="menu" id="Ravintola2">
-        <div class="menuText2"></div>
-      </section>
+      <h1>Ruokalista</h1>
+      <button id="sort-button">Sort</button>
+      <button id="lang-button">Language</button>
+      <button id="rand-button">Random</button>
+      <div class="menu-container"></div>
+      <div class="menu-container"></div>
+      <div class="menu-container" id="menuRandom"></div>
     </main>
-    <button id="language">Language</button>
-    <button id="sort">Sort</button>
-    <button id="random">Random</button>
   </body>
 </html>
