@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;800&display=swap");
+
+@font-face {
+  font-family: Lato regular;
+  src: url(../fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+  font-family: Lato bold;
+  src: url(../fonts/Lato-Bold.ttf);
+}
+
+@font-face {
+  font-family: Lato heavy;
+  src: url(../fonts/Lato-Black.ttf);
+}
+
+:root {
+  --mainGreen: #0B6011;
+  --mainRed: #940e3f;
+  --darkGrey: #343a40;
+  --lightGrey: #9badbf;
+  --black: #000000;
+  --white: white;
+
+  --varGreen: #013105;
+  --varLightGreen: #65ff71;
+  --varRed: #AE003F;
+
+  --roboto: 'Roboto Slab', serif;
+  /* regular: 400
+  Bold: 800 */
+  --lato-re: 'lato regular';
+  --lato-bo: 'lato bold';
+  --lato-he: 'lato heavy';
+}

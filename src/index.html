@@ -7,14 +7,59 @@
   </head>
 
   <body>
+    <nav>
+      <ul id="linkBar">
+        <li><a class="pageLink" href="lounari.html">Etusivu</a></li>
+        <li><a class="pageLink" href="ruokalista.html">Ruokalista</a></li>
+        <li><a class="pageLink" href="ravintolat.html">Ravintolat</a></li>
+        <li><a class="pageLink" href="yhteystiedot.html">Yhteystiedot</a></li>
+      </ul>
+
+      <div id="searchBar">
+        <label for="inputBar"
+          ><img src="assets/icons/search.svg" id="searchIcon" alt="icon"
+        /></label>
+        <input
+          id="inputBar"
+          type="text"
+          placeholder="Etsi ravintolaa nimellä"
+        />
+      </div>
+    </nav>
+
+     <!-- Header  -->
+     <header>
+      <div id="headerText">
+        <h1 id="heading">Lounari.</h1>
+        <h2 id="slogan">Missä tänään syötäisiin?</h2>
+      </div>
+      <div id="headerImg"></div>
+    </header>
+
+    <!-- Main  -->
     <main>
-      <h1>Ruokalista</h1>
+      <section class="flex" id="bodyTextContainer">
+        <p id="bodyText">
+          Missä tänään syötäisiin Tuttu tarina ennen lounashetkeä. <br />
+          Palvelu etsii lähelläsi olevat lounaspaikat, seka näyttää niiden
+          päivittäisen lounaslistan. <br />
+          Viikottaiset lounaslistat ovat myös käytettävissäsi. Pääset niihin
+          klikkaamalla ravintolan logoa.
+        </p>
+      </section>
+
+
+
+    <main>
       <button id="sort-button">Sort</button>
       <button id="lang-button">Language</button>
       <button id="rand-button">Random</button>
       <div class="menu-container"></div>
       <div class="menu-container"></div>
       <div class="menu-container" id="menuRandom"></div>
-    </main>
+
+       <!-- Footer -->
+    <footer></footer>
+
   </body>
 </html>

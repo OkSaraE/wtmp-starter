@@ -1,7 +1,134 @@
-body{
-  width: 60%;
-  margin:auto;
+@import url(root.css);
+
+body {
+  width: 80%;
+  margin: auto;
 }
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: row
+}
+
+#linkBar {
+  list-style-type: none;
+  padding: 0px;
+}
+
+#linkBar>li{
+  display: inline;
+}
+
+.pageLink {
+  color: var(--mainRed);
+  padding: 10px 5px 10px 5px;
+  margin-right: 10px;
+  font-size: 1.8em;
+  font-family: var(--lato-bo);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.pageLink:hover {
+  background-color: var(--varRed);
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+#searchBar {
+  border: solid 2px var(--mainRed);
+  border-radius: 5px;
+  height: 30px;
+  align-self: center;
+  display: flex;
+  padding: 5px;
+}
+
+#searchIcon {
+  height: 100%;
+  margin-right: 5px;
+  fill: var(--mainRed);
+}
+
+#inputBar {
+  border: none;
+  font-family: var(--lato-re);
+}
+
+#inputBar:focus {
+  outline: none;
+}
+
+/* Header  */
+header {
+  background-color: var(--mainGreen);
+  display: flex;
+  flex-basis: auto;
+  height: 250px;
+  justify-content: center;
+  text-align: center;
+}
+
+#headerText {
+  width: 40vw;
+  color: var(--white);
+  margin: auto;
+}
+
+#heading {
+  font-family: var(--roboto);
+  font-weight: extrabold;
+  font-size: 5em;
+  margin: 0px;
+}
+
+#slogan {
+  font-family: var(--roboto);
+  font-weight: 400;
+  font-size: 1.8em;
+  margin: 0px;
+}
+
+#headerImg {
+  background-image: url(img/spaghetti-fryingpan-souce.jpeg);
+  width: 60vw;
+  height: auto;
+  background-size: 1000px 662px;
+  background-attachment: fixed;
+  background-position: top -80px right 8vw;
+  background-repeat: no-repeat;
+
+  object-fit: cover;
+
+  /* clip-path: polygon(0 0, 100% 0%, 75% 100%, 0% 100%); */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 25% 100%);
+}
+
+/* Main  */
+main {
+  margin-bottom: 20px;
+  height: 100vh;
+}
+
+.flex {
+  display: flex;
+}
+
+#bodyTextContainer {
+  justify-content: center;
+  text-align: center;
+}
+
+#bodyText {
+  font-family: var(--lato-re);
+  font-size: 1.8em;
+  line-height: 1.3;
+}
+
 
 .menu-container{
   border: 2px solid black;
@@ -13,11 +140,11 @@ button{
   border: 1px solid black;
   padding: 5px 10px;
   margin-left: 10px;
-  background-color: #bbd0ff;
+  background-color: #69e672;
 }
 
 button:hover{
-  background-color: #5d91ff;
+  background-color: #0B6011;
   cursor: pointer;
   color:white;
 }
@@ -25,5 +152,12 @@ button:hover{
 #menuRandom{
   visibility: hidden;
   padding: 10px;
-  background-color: #bbd0ff;
+  background-color: #69e672;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+  height: 50px;
+  background-color: var(--varGreen);
 }
