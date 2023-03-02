@@ -4,11 +4,11 @@ import { doFetch } from "./network";
 
 const today = new Date().toISOString().split("T")[0];
 const dailyUrl =
-  "https://www.sodexo.fi/ruokalistat/output/daily_json/152/" + today;
+  "https://www.sodexo.fi/ruokalistat/output/daily_json/" + today;
 
-const getDailyMenu = async (lang) => {
+const getDailyMenu = async (restaurantId, lang) => {
   try {
-    const menu = await doFetch(dailyUrl);
+    const menu = await doFetch(dailyUrl + restaurantId);
   const coursesEn = Object.values(menu.courses).map(
     (course) => course.title_en
   );
