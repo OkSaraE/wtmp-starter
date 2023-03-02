@@ -1,14 +1,22 @@
-import MenuFi from '../mock-data/fazer-week-example.json';
+import {doFetch} from './network';
 
-import MenuEn from '../mock-data/fazer-week-example-en.json';
+const weeklyUrl =
+  'https://www.compass-group.fi/menuapi/feed/json?costNumber=3208&language=';
 
-const coursesFi = MenuFi.MenusForDays[0].SetMenus.map((menuItem) => {
-  return menuItem.Components.join(', ');
-});
+const getDailyMenu = async (lang) => {
+  try {
+    const weeklyMenu = await doFetch(weeklyUrl + lang, true);
+    console.log('fazer menu', weeklyMenu);
+    const courses = weeklyMenu.MenusForDays[0].SetMenus.map(
+      (menuItem) => {
+        return menuItem.Components.join(', ');
+      }
+    );
+    return courses;
+  } catch (error) {
+    throw new Error('getDailyMenu error: ' + error);
+  }
+};
 
-const coursesEn = MenuEn.MenusForDays[0].SetMenus.map((menuItem) => {
-  return menuItem.Components.join(', ');
-});
-
-const fazer = {coursesFi, coursesEn};
-export default fazer;
+const Fazer = {getDailyMenu};
+export default Fazer;

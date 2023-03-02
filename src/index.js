@@ -1,5 +1,6 @@
 import Sodexo from "./modules/sodexo-data";
 import Fazer from "./modules/fazer-data";
+import sw from "./modules/serviceWorker";
 
 let lang = "fi";
 let menuContainers = [];
@@ -29,14 +30,9 @@ const renderMenu = (menu, targetElem) => {
 // };
 
 //language change
-const changeLanguage = (language) => {
-  if (language === "fi") {
-    activeMenus[0] = Sodexo.coursesFi;
-    activeMenus[1] = Fazer.coursesFi;
-  } else if (language === "en") {
-    activeMenus[0] = Sodexo.coursesEn;
-    activeMenus[1] = Fazer.coursesEn;
-  }
+const changeLanguage = async (language) => {
+  activeMenus[0] = await Sodexo.getDailyMenu(language);
+  activeMenus[1] = await Fazer.getDailyMenu(language);
   lang = language;
   for (const [index, menu] of activeMenus.entries()) {
     renderMenu(menu, menuContainers[index]);
@@ -73,24 +69,24 @@ langButton.addEventListener("click", () => {
 });
 
 //init
-const init = () => {
-  activeMenus = [Sodexo.coursesFi, Fazer.coursesFi];
+const init = async () => {
+  activeMenus = [await Sodexo.getDailyMenu(lang), await Fazer.getDailyMenu(lang)];
   menuContainers = document.querySelectorAll(".menu-container");
   for (const [index, menu] of activeMenus.entries()) {
     renderMenu(menu, menuContainers[index]);
   }
 };
 
-
 init();
 
-
-if (APP_CONF.productionMode && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').then(registration => {
-      console.log('SW registered: ', registration);
-    }).catch(registrationError => {
-      console.log('SW registration failed: ', registrationError);
-    });
-  });
-}
+sw();
+//moved to own module
+// if (APP_CONF.productionMode && 'serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('./service-worker.js').then(registration => {
+//       console.log('SW registered: ', registration);
+//     }).catch(registrationError => {
+//       console.log('SW registration failed: ', registrationError);
+//     });
+//   });
+// }
