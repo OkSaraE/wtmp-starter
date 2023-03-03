@@ -19,15 +19,6 @@ const renderMenu = (menu, targetElem) => {
   menuContainer.append(list);
 };
 
-//menu sorting
-//not working with multiple menus
-// const sortMenu = (menu, order = "asc") => {
-//   menu.sort();
-//   if (order === "desc") {
-//     menu.reverse();
-//   }
-//   return menu;
-// };
 
 //language change
 const changeLanguage = async (language) => {
@@ -68,9 +59,32 @@ langButton.addEventListener("click", () => {
   }
 });
 
+//Theme change 1 = light || 2 = dark
+let theme = 1;
+const body = document.querySelector("body");
+const themeButton = document.querySelector("#theme-button");
+//check wich theme is curently in use and changes it
+themeButton.addEventListener("click", () => {
+  if (theme === 1) {
+    body.style.backgroundColor = "#22272E";
+    body.style.color = "white";
+    theme = 2;
+  } else {
+    theme = 1;
+    body.style.backgroundColor = "white";
+    body.style.color = "black";
+  }
+
+  //saves the new theme to the local Storage
+  localStorage.setItem('theme', theme);
+});
+
 //init
 const init = async () => {
-  activeMenus = [await Sodexo.getDailyMenu(lang), await Fazer.getDailyMenu(lang)];
+  activeMenus = [
+    await Sodexo.getDailyMenu(lang),
+    await Fazer.getDailyMenu(lang),
+  ];
   menuContainers = document.querySelectorAll(".menu-container");
   for (const [index, menu] of activeMenus.entries()) {
     renderMenu(menu, menuContainers[index]);
@@ -80,13 +94,3 @@ const init = async () => {
 init();
 
 sw();
-//moved to own module
-// if (APP_CONF.productionMode && 'serviceWorker' in navigator) {
-//   window.addEventListener('load', () => {
-//     navigator.serviceWorker.register('./service-worker.js').then(registration => {
-//       console.log('SW registered: ', registration);
-//     }).catch(registrationError => {
-//       console.log('SW registration failed: ', registrationError);
-//     });
-//   });
-// }
